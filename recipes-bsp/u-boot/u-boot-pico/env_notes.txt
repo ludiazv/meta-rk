@@ -1,0 +1,16 @@
+blkdevparts=mmcblk1:8@24K(env),512K@32K(idblock),-(uboot)
+# Capture
+user_debug=31 -> Kernel CMD
+storagemedia=sd -> uboot default
+androidboot.storagemedia=sd  -> uboot default
+androidboot.mode=normal  --> uboot default
+rootwait ->DTS
+earlycon=uart8250,mmio32,0xff4c0000 --> DTS
+console=ttyFIQ0 --> DTS
+snd_soc_core.prealloc_buffer_size_kbytes=16 --> DTS
+coherent_pool=0 --> DTS
+root=/dev/mmcblk1p7 --> DTS
+rootfstype=ext4 --> ?
+rk_dma_heap_cma=1M --> Build patch dtb
+blkdevparts=mmcblk1:32K(env),512K@32K(idblock),256K(uboot),32M(boot),512M(oem),256M(userdata),6G(rootfs),-(media) -> build patch dtb
+

@@ -1,0 +1,21 @@
+# Disk layout form pico-sdk
+# Modified with relocation environment.
+# Or
+# PICO SDK => RK_PARTITION_CMD_IN_ENV="32K(env),512K@32K(idblock),256K(uboot),32M(boot),512M(oem),256M(userdata),6G(rootfs),-(media)"
+# Rellocated
+# blkdevparts=mmcblk1:8@24K(env),512K@32K(idblock),-(uboot)
+#
+#   Partition   Start K      Size K
+#   env     	24K             8K      --Not in partition table --
+#   idblock     32K		512K    --Not in partition table --
+#   uboot	544K		1024K   --Not in partition table --
+#   /boot	1588K
+
+
+part env 	--offset 24 	--fixed-size 8K 	--source rawcopy --sourceparams="file=u-boot-default-env.img" --no-table
+part idblock	--offset 32 	--fixed-size 512K	--source rawcopy --sourceparams="file=idblock.img" --no-table
+part uboot	--offset 544	--fixed-size 1024K	--source rawcopy --sourceparams="file=u-boot.img"  --no-table
+part /boot	--offset 1588   --size       114688K --active --source bootimg-partition --fstype=vfat --label boot --use-uuid
+part /                                                        --source rootfs            --fstype=ext4 --label root --use-uuid
+
+bootloader --ptable msdos

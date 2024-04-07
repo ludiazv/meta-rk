@@ -1,0 +1,5 @@
+#kconf hardware remove-non-rockchip-arch-arm64.cfg
+
+# Add missing DTSs
+patch 0001-orange-pi-3b-dts.patch
+

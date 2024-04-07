@@ -1,0 +1,21 @@
+# Default environment configuration
+# Supports the following variables
+# ---------------------------------
+#console=<serial|display|both>
+console=serial
+#extraargs="<boot arguments to the linux kernel>"
+# e.g. extraargs=earlycon loglevel=1 cgroup_enable=memory swapaccount=1
+# defaults to empty
+#overlays="<space separted list of DT overlays to apply without .dtbo extension. overalays should be located at /boot/dbto>"
+# e.g. overlays=rk3566-i2c2 rk3566-spi1
+# defaults to empty
+#rootdev=/dev/rootpart
+# e.g rootdev=/dev/mvme0n1p2 
+#defaults to partion 2 of the mmc that booted.
+#rootfstype=<fs of root partition>
+# e.g. rootfstype=btrfs 
+# defaults to ext4
+
+
+
+

@@ -1,0 +1,21 @@
+From a89d3d7ac3f2ff3bf489dfbe14353d1a53fe52f2 Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe.patch@oe>
+Date: Fri, 24 Nov 2023 10:27:58 +0100
+Subject: [PATCH] add uwe5622 driver to makefile
+
+---
+ drivers/net/wireless/Makefile | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/net/wireless/Makefile b/drivers/net/wireless/Makefile
+index 4d7374d567d1..f129a5740456 100644
+--- a/drivers/net/wireless/Makefile
++++ b/drivers/net/wireless/Makefile
+@@ -25,3 +25,7 @@ obj-$(CONFIG_WLAN_VENDOR_ZYDAS) += zydas/
+ 
+ obj-$(CONFIG_WLAN) += legacy/
+ obj-$(CONFIG_WLAN) += virtual/
++
++#uwe5622
++obj-$(CONFIG_SPARD_WLAN_SUPPORT) += uwe5622/
++

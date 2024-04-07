@@ -1,0 +1,3 @@
+#Enable pcie ROCKCHIP
+kconf harware pcie-fragment.cfg
+
