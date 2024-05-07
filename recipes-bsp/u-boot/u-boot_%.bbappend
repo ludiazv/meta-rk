@@ -19,8 +19,9 @@ INIT_FIRMWARE_DEPENDS:rk3566 = " rockchip-rkbin:do_deploy"
 
 		
 
-SRC_URI:orangepi-3b = "git://github.com/Kwiboo/u-boot-rockchip.git;protocol=https;branch=rk3568-2023.10"
-SRCREV:orangepi-3b = "0bc339ffa6f804d51c5c5292d8ff69c4d79614d3"
+SRC_URI:orangepi-3b = "git://github.com/Kwiboo/u-boot-rockchip.git;protocol=https;branch=rk3xxx-2024.04"
+SRCREV:orangepi-3b = "e353ac61883647dc4c61b0135ce8e27e74104e7e"
+#SRCREV:orangepi-3b = "0bc339ffa6f804d51c5c5292d8ff69c4d79614d3"
 #SRC_URI:orangepi-3b = " git://github.com/Kwiboo/u-boot-rockchip.git;protocol=https;branch=rk35xx-2024.01"
 #SRCREV:orangepi-3b = "583d37d192d92c5e92efa68b1d97f8ecdef71c47"
 
