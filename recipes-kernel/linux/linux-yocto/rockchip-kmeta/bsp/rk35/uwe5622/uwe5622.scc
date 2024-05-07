@@ -1,18 +1,25 @@
+# KMeta ported from armbian build/lib/functions/compilation/patch/drivers_network.sh
+# function driver_uwe5622()
+# 
 # Add support in kernel compilation
 kconf hardware uwe5622-fragment.cfg
 
 # armbian patches for uwe5622 driver for rockchip >= 6.6
-patch wireless-driver-for-uwe5622-allwinner-v6.3.patch
-patch wireless-driver-for-uwe5622-allwinner-bugfix-v6.3.patch
-patch wireless-driver-for-uwe5622-allwinner-v6.3-compilation-fix.patch
-patch wireless-driver-for-uwe5622-v6.4-post.patch
-patch wireless-driver-for-uwe5622-warnings.patch
-patch wireless-driver-for-uwe5622-park-link-v6.1-post.patch
-patch wireless-driver-for-uwe5622-v6.1.patch
-patch wireless-driver-for-uwe5622-v6.6-fix-tty-sdio.patch
+patch uwe5622-allwinner-v6.3.patch
+patch uwe5622-allwinner-bugfix-v6.3.patch
+patch uwe5622-allwinner-v6.3-compilation-fix.patch
+patch uwe5622-v6.4-post.patch
+patch uwe5622-warnings.patch
+patch uwe5622-park-link-v6.1-post.patch
+patch uwe5622-v6.1.patch
+patch uwe5622-v6.6-fix-tty-sdio.patch
+patch wireless-uwe5622-Fix-compilation-with-6.7-kernel.patch
+patch wireless-uwe5622-reduce-system-load.patch
 
-# armbian rockchip especific tweaks
-patch wifi-4003-uwe5622-adjust-for-rockchip.patch
+
+
+# armbian rockchip especific tweaks (not clear if needed for rk35xx)
+patch uwe5622-adjust-for-rockchip-post-6.1.patch
 
 # Custom: Add driver to makefile and patch Makefiles to make it work with yocto.
 patch 0001-add-uwe5622-driver-to-makefile.patch
