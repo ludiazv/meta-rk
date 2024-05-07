@@ -24,7 +24,7 @@ To deploy a custon boot enviroment add the folllowint to ```local.conf```:
 ```bash
 RK35_BOOT_ENV="<name of the boot enviroment file (without .txt)>"
 # Optinaly you can also add extra kernel arguments using
-# RK35_BOOT_EXTRAARGS="<your kernel parameters>"
+# RK35_BOOT_EXTRAARGS="<your kernel extra parameters>"
 ```
 
 To add device tree overlays two steps are required:
@@ -44,10 +44,27 @@ SRC_URI:append = " file://<your overlay>.dts"
 RK35_OVERLAYS = " <your overlay names separed by spaces (without .dts)>"
 ```
 
+### Initramfs support
+
+The layer offers a basic initramfs to load inital ramdisk. This will enable early hw detection by the kernlen using eudev to provide booting
+from NVME drives.
+
+To enable this feature defien in ```local.conf``` the follwing variable:
+```bash
+RK35_INTRAMFS = "1"
+```
+
+To install extra packages in the initial ramdisk add the following variable:
+
+```bash
+RK35_INITRAMFS_EXTRA_INSTALL = " <space-separeted list of packages>"
+```
+Typically selected kernel modules and firmware need to be placed in ```RK35_INITRAMFS_EXTRA_INSTALL``` to enable udev to load required drivers.
+
 ## Supported boards
 
 - Orange Pi 3B with support for Ethenet, USB, EMMC, NVME, Wifi. 
-- Luckfox pico Mini A without overlay support.
+- Luckfox pico Mini A: No overlay support. No initramfs support.
 
 
 ## ToDo
