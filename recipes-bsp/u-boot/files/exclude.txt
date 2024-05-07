@@ -1,0 +1,10 @@
+/boot/*
+/dev/*
+/sys/*
+/proc/*
+/mnt/*
+/media/*
+/run/*
+/tmp/*
+/ddbr/*
+/lost+found/*

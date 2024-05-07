@@ -18,7 +18,8 @@ IMAGE_BOOT_FILES = " \
 	${@ d.getVar('RK35_BOOT_ENV') + '.txt' if (d.getVar('RK35_BOOT_ENV') or '').strip() else ''} \
 	${@ 'devicetree/*.dtbo;dtbo/' if (d.getVar('RK35_BOOT_ENV') or '').strip() else ''} \
 	${@bb.utils.contains('RK35_INSTALL_EXTRA','1','u-boot/*;u-boot/','',d)} \
-	"
+        ${@ d.getVar('INITRAMFS_IMAGE') + '-' + d.getVar('MACHINE') + '.cpio.gz.u-boot;uinitrd' if (d.getVar('INITRAMFS_IMAGE') or '').strip() else ''} \ 
+"
 
 
 # arm64 dbts are under <vendor>/dts but is deployed under DEPLOYDIR 
@@ -32,6 +33,7 @@ do_fix_device_tree_location() {
             local dst=${DEPLOY_DIR_IMAGE}/${dbt_dir}/${dbt}
             if [ ! -f ${dst} ] ; then
                 mkdir -p ${DEPLOY_DIR_IMAGE}/$dbt_dir
+		[ -h ${dst} ] && rm ${dst}
                 ln -s ${DEPLOY_DIR_IMAGE}/${dbt} ${dst}
             fi
         fi

@@ -10,11 +10,13 @@ console=serial
 # e.g. overlays=rk3566-i2c2 rk3566-spi1
 # defaults to empty
 #rootdev=/dev/rootpart
-# e.g rootdev=/dev/mvme0n1p2 
+# e.g rootdev=/dev/nvme0n1p2 (uuids can also by used)
 #defaults to partion 2 of the mmc that booted.
 #rootfstype=<fs of root partition>
 # e.g. rootfstype=btrfs 
 # defaults to ext4
+#verbosity=7
+#defaults to notice level 6
 
 
 

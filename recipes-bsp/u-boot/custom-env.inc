@@ -1,6 +1,6 @@
 # Boot script management
 # This include implement the logic for custom envirment
-SRC_URI:append = " file://boot.cmd.in file://rk35_env.txt"
+SRC_URI:append = " file://boot.cmd.in file://rk35_env.txt file://exclude.txt file://spiflash.sh"
 
 UBOOT_ENV_SUFFIX = "scr"
 UBOOT_ENV = "boot"
@@ -10,7 +10,9 @@ RK35_BOOT_ENV ??= ""
 RK35_BOOT_EXTRAARGS ??= ""
 RK35_OVERLAYS ??= ""
 RK35_INSTALL_EXTRA ??= "${@bb.utils.contains('DISTRO_FEATURES','debug-tweaks','1','0',d)}"
-RK35_EXTRA_FILES = "${WORKDIR}/${UBOOT_ENV_SRC} ${B}/u-boot.itb ${B}/idbloader.img ${B}/u-boot-rockchip-spi.bin" 
+RK35_EXTRA_FILES = "${WORKDIR}/${UBOOT_ENV_SRC} ${B}/u-boot.itb ${B}/idbloader.img ${B}/u-boot-rockchip-spi.bin \
+                    ${WORKDIR}/exclude.txt ${WORKDIR}/spiflash.sh \
+                    " 
 
 
 
@@ -46,7 +48,9 @@ rk35_uboot_env_helper() {
    fi
 }
 
-# Helper to extract extra
+# Helper to deploy extra files related with u-boot.
+# These files are not needed to boot but required to flash bootloader in the spi flash
+# and perform installaction on the emmc,USB or NVME drives
 rk35_uboot_extra_helper() {
    local dst=$1
 
@@ -94,8 +98,9 @@ do_deploy:append() {
   fi
 }
 
-# Include package boot env to env
+# Include package boot env and extra
 FILES:${PN}:append = " ${@ '/boot/' + d.getVar('RK35_BOOT_ENV') + '.txt' if (d.getVar('RK35_BOOT_ENV') or "").strip() else ''}"
+FILES:${PN}:append = " ${@ '/boot/u-boot/' if d.getVar('RK35_INSTALL_EXTRA') == '1' else ''}"
 
 # Add dependency for overlays
 RDEPENDS:${PN}:append = " ${@ 'rk35-overlays' if (d.getVar('RK35_OVERLAYS') or "").strip() else ''}"
