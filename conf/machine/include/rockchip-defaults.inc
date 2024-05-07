@@ -1,7 +1,7 @@
 # meta-rk35 default settings
 
 # kernel Provider and version
-PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-dev"
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
 PREFERRED_VERSION_virtual/kernel ?="6.6%"
 
 # Use default Kernel configuration values if not defined
